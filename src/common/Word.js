@@ -38,7 +38,11 @@ class word extends Component {
 const styles = StyleSheet.create({
     container:{
         justifyContent:'space-evenly',
-        marginVertical:20,
+        marginVertical:10,
+        borderRadius: 10,
+        backgroundColor: 'gainsboro',
+        paddingVertical: 10,
+        marginHorizontal: 20,
     
     },
     groupText:{

@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Word from './src/common/Word';
 
 const words = [
@@ -19,9 +19,11 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {words.map(word => (
-          <Word word={word} key={word.en} />
-        ))}
+        <ScrollView>
+          {words.map(word => (
+            <Word word={word} key={word.en} />
+          ))}
+        </ScrollView>
     </View>
     );
   }
