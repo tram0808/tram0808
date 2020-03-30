@@ -36,9 +36,10 @@ export default class Box extends Component {
             justifyContent: 'space-evenly',
           }}>
             <TouchableOpacity 
-            onPress={function(){
-                count = count+1;
-                alert(count);
+            onPress={() => {
+                this.setState({count : this.state.count + 1}, () => {
+                    alert(JSON.stringify(this.state.count));
+                  });
             }}
             style={{backgroundColor: 'green', padding: 10}}>
                 <Text style={{
