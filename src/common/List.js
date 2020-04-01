@@ -19,6 +19,15 @@ export default class List extends Component {
               ],
         };
     }
+    toggleMemorized = id => {
+        const newWords = this.state.words.map(item => {
+            if(item.id === id){
+                return {...item, isMemorized :!item.isMemorized};
+            }
+            return item;
+        });
+        this.setState({words : newWords});
+    };
     render() {
         return (
         <View style={styles.container}>
@@ -34,7 +43,9 @@ export default class List extends Component {
                             </Text>
                         </View>
                         <View style={styles.groupButton}>
-                            <TouchableOpacity style={styles.buttonMemorized(word.isMemorized)}>
+                            <TouchableOpacity 
+                                onPress={() => this.toggleMemorized(word.id)}
+                                style={styles.buttonMemorized(word.isMemorized)}>
                                 <Text style={styles.textMemorized}>{word.isMemorized ? 'Forgot' : 'Memorized' }</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonRemove}>
