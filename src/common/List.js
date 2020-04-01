@@ -28,6 +28,10 @@ export default class List extends Component {
         });
         this.setState({words : newWords});
     };
+    removeWords = id =>{
+        const newWords = this.state.words.filter(item => item.id !== id);
+        this.setState({words: newWords});
+    };
     render() {
         return (
         <View style={styles.container}>
@@ -48,7 +52,9 @@ export default class List extends Component {
                                 style={styles.buttonMemorized(word.isMemorized)}>
                                 <Text style={styles.textMemorized}>{word.isMemorized ? 'Forgot' : 'Memorized' }</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttonRemove}>
+                            <TouchableOpacity 
+                                onPress={() => this.removeWords(word.id)}
+                                style={styles.buttonRemove}>
                                 <Text style={styles.textRemove}>Remove</Text>
                             </TouchableOpacity>
                         </View>
