@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import {Text, View, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 
-const words = [
-    {id: '1', en: 'One', vn: 'Mot', isMemorized: true},
-    {id: '2', en: 'Two', vn: 'Hai', isMemorized: false},
-    {id: '3', en: 'Three', vn: 'Ba', isMemorized: false},
-    {id: '4', en: 'Four', vn: 'Bon', isMemorized: false},
-    {id: '5', en: 'Five', vn: 'Nam', isMemorized: false},
-    {id: '6', en: 'Six', vn: 'Sau', isMemorized: true},
-    {id: '7', en: 'Seven', vn: 'Bay', isMemorized: false},
-    {id: '8', en: 'Eight', vn: 'Tam', isMemorized: true},
-    {id: '9', en: 'Nine', vn: 'Chin', isMemorized: false},
-    {id: '10', en: 'Ten', vn: 'Muoi', isMemorized: true},
-  ];
   export default class MyFatlist extends Component {
     constructor(props) {
       super(props);
       this.state = {
         isLoading: false,
+        words : [
+          {id: '1', en: 'One', vn: 'Mot', isMemorized: true},
+          {id: '2', en: 'Two', vn: 'Hai', isMemorized: false},
+          {id: '3', en: 'Three', vn: 'Ba', isMemorized: false},
+          {id: '4', en: 'Four', vn: 'Bon', isMemorized: false},
+          {id: '5', en: 'Five', vn: 'Nam', isMemorized: false},
+          {id: '6', en: 'Six', vn: 'Sau', isMemorized: true},
+          {id: '7', en: 'Seven', vn: 'Bay', isMemorized: false},
+          {id: '8', en: 'Eight', vn: 'Tam', isMemorized: true},
+          {id: '9', en: 'Nine', vn: 'Chin', isMemorized: false},
+          {id: '10', en: 'Ten', vn: 'Muoi', isMemorized: true},
+        ],
       };
     }
     renderItemFlatlist = item => {
@@ -31,7 +31,15 @@ const words = [
           </View>
           <View style={styles.groupButton}>
             <TouchableOpacity
-              onPress={() => this.toggleMemorized(item.id)}
+              onPress={() => {
+              const newWords = this.state.words.map(word => {
+                if (word.id === item.id) {
+                  return {...word, isMemorized: !word.isMemorized};
+                }
+                return word;
+              });
+              this.setState({words: newWords});
+            }}
               style={styles.buttonMemorized(item.isMemorized)}>
               <Text style={styles.textMemorized}>
                 {item.isMemorized ? 'Forgot' : 'Memorized'}
@@ -49,10 +57,10 @@ const words = [
     render() {
       return (
         <FlatList
-            data={words}
+            data={this.state.words}
             renderItem={({item}) => this.renderItemFlatlist(item)}
             keyExtractor={item => item.id}
-            extraData={words}
+            extraData={this.state.words}
 />
     );
   }
