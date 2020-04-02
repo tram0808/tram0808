@@ -1,10 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import Word from './src/common/Word';
-import Box from './src/common/Box';
-import List from './src/common/List';
-import MyFalist from './src/common/MyFalist';
+import MyFatlist from './src/common/MyFatlist';
 
 export default class App extends Component {
   render() {
@@ -13,7 +10,8 @@ export default class App extends Component {
         {/* <ScrollView showsVerticalScrollIndicator={false}>
           <List />
         </ScrollView> */}
-        <MyFalist/>
+        {/* <Abv/> */}
+        <MyFatlist />
     </View>
     );
   }
@@ -23,6 +21,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
   },
 });
 
