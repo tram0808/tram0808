@@ -4,15 +4,16 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Word from './src/common/Word';
 import Box from './src/common/Box';
 import List from './src/common/List';
-
+import MyFalist from './src/common/MyFalist';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        {/* <ScrollView showsVerticalScrollIndicator={false}>
           <List />
-        </ScrollView>
+        </ScrollView> */}
+        <MyFalist/>
     </View>
     );
   }
