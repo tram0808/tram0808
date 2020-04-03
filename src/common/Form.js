@@ -14,7 +14,10 @@ render() {
                 fontSize: 20,
                 paddingHorizontal: 20,
             }}
+            // secureTextEntry={true} //dung de nhap password
+            // keyboardType="number-pad" //nhap so
             placeholder="English"
+            
             />
             <TextInput
             style={{
