@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import MyFatlist from './src/common/MyFatlist';
-
+import Form from './src/common/Form';
 export default class App extends Component {
   render() {
     return (
@@ -11,7 +11,7 @@ export default class App extends Component {
           <List />
         </ScrollView> */}
         {/* <Abv/> */}
-        <MyFatlist />
+        <Form />
     </View>
     );
   }
