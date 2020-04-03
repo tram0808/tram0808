@@ -71,16 +71,11 @@ import {Text,View,StyleSheet,TouchableOpacity,FlatList,TextInput,} from 'react-n
           vn: this.txtVn,
           isMemorized: false,
         };
-        const newWords = this.state.words.concat(newWord);
+        const newWords = Object.assign([], this.state.words);
+        newWords.splice(0, 0, newWord);
         this.txtVn = '';
         this.txtEn = '';
-        this.setState({words: newWords, shouldShowform: false}, () => {
-          const length = this.state.words.length;
-          this.flatlist.scrollToIndex({
-            animated: true,
-            index: length - 2 + '',
-          });
-        });
+       this,this.setState({words: newWords, shouldShowform: false});
       };
     renderForm = () => {
       if (this.state.shouldShowform) {
