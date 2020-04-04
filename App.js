@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import MyFatlist from './src/common/MyFatlist';
 import Form from './src/common/Form';
 import List from './src/common/List';
-
+import Filter from './src/common/Filter';
 
 export default class App extends Component {
   render() {
@@ -13,7 +13,7 @@ export default class App extends Component {
         {/* <ScrollView showsVerticalScrollIndicator={false}>
           <List />
         </ScrollView> */}
-        <List/>
+        <Filter/>
     </View>
     );
   }
@@ -23,7 +23,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:'center',
   },
 });
 
