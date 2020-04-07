@@ -21,7 +21,7 @@ import RNPickerSelect from 'react-native-picker-select';
           {id: '10', en: 'Ten', vn: 'Muoi', isMemorized: true},
         ],
         shouldShowform: false,
-        favColor: undefined,
+        filterMode: 'Show_All',
           items: [
               {label: 'Show All',value: 'Show_All',},
               {label: 'Show Forgot',value: 'Show_Forgot',},
@@ -43,6 +43,11 @@ import RNPickerSelect from 'react-native-picker-select';
       this.setState({words: newWords});
     };
     renderItemFlatlist = item => {
+      if(this.state.filterMode === 'Show_Forgot' && !item.isMemorized){
+        return null;
+      } else if (this.state.filterMode === 'Show_Memorized' && item.isMemorized){
+        return null;
+      }
       return (
         <View style={styles.containerGroupWord} key={item.id}>
           <View style={styles.groupText}>
@@ -133,13 +138,13 @@ import RNPickerSelect from 'react-native-picker-select';
                     value: null,
                 }}
                 items={this.state.items}
-                onValueChange={(value) => {
+                onValueChange={(itemValue) => {
                     this.setState({
-                        favColor: value,
+                      filterMode: itemValue,
                     });
                 }}
                 style={{ ...pickerSelectStyles }}
-                value={this.state.favColor}
+                value={this.state.filterMode}
             />
           </View>
       </View>
@@ -157,7 +162,7 @@ import RNPickerSelect from 'react-native-picker-select';
             data={this.state.words}
             renderItem={({item}) => this.renderItemFlatlist(item)}
             keyExtractor={item => item.id}
-            extraData={this.state.words}
+            extraData={this.state}
           />
         </View>
       );
@@ -265,16 +270,7 @@ import RNPickerSelect from 'react-native-picker-select';
     backgroundHeader: {
       marginTop: 10,
     },
-    containerPickerStyle:{
-      borderWidth : 1 ,
-      borderRadius: 1, 
-      borderColor: 'black', 
-      marginHorizontal : 20 , 
-      marginVertical : 10
-    },
-    pickerStyle: {
-      height: 50
-    },
+    
     container: {
       paddingTop: 30,
       backgroundColor: '#fff',

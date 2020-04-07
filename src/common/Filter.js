@@ -5,9 +5,6 @@ import RNPickerSelect from 'react-native-picker-select';
 export default class Filter extends React.Component {
     constructor(props) {
         super(props);
-
-        this.inputRefs = {};
-
         this.state = {
             favColor: undefined,
             items: [
