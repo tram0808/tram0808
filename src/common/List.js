@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Text,View,StyleSheet,TouchableOpacity,FlatList,TextInput,} from 'react-native';
-  
+import {Text,View,StyleSheet,TouchableOpacity,FlatList,TextInput,Picker} from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
+
   export default class List extends Component {
     constructor(props) {
       super(props);
@@ -20,6 +21,12 @@ import {Text,View,StyleSheet,TouchableOpacity,FlatList,TextInput,} from 'react-n
           {id: '10', en: 'Ten', vn: 'Muoi', isMemorized: true},
         ],
         shouldShowform: false,
+        favColor: undefined,
+          items: [
+              {label: 'Show All',value: 'Show_All',},
+              {label: 'Show Forgot',value: 'Show_Forgot',},
+              {label: 'Show Memorized',value: 'Show_Memorized',},
+          ],         
       };
     }
     toggleMemorized = id => {
@@ -115,6 +122,29 @@ import {Text,View,StyleSheet,TouchableOpacity,FlatList,TextInput,} from 'react-n
         );
       }
     };
+    renderHeader = () =>{
+      return (
+        <View>
+          {this.renderForm()}
+          <View style={styles.container}>
+            <RNPickerSelect
+                placeholder={{
+                    label: 'Show All...',
+                    value: null,
+                }}
+                items={this.state.items}
+                onValueChange={(value) => {
+                    this.setState({
+                        favColor: value,
+                    });
+                }}
+                style={{ ...pickerSelectStyles }}
+                value={this.state.favColor}
+            />
+          </View>
+      </View>
+      )
+  }
     render() {
       return (
         <View style={styles.container}>
@@ -123,7 +153,7 @@ import {Text,View,StyleSheet,TouchableOpacity,FlatList,TextInput,} from 'react-n
                 this.flatlist = ref;
             }}
             ListHeaderComponentStyle={styles.backgroundHeader}
-            ListHeaderComponent={this.renderForm}
+            ListHeaderComponent={this.renderHeader}
             data={this.state.words}
             renderItem={({item}) => this.renderItemFlatlist(item)}
             keyExtractor={item => item.id}
@@ -235,4 +265,34 @@ import {Text,View,StyleSheet,TouchableOpacity,FlatList,TextInput,} from 'react-n
     backgroundHeader: {
       marginTop: 10,
     },
+    containerPickerStyle:{
+      borderWidth : 1 ,
+      borderRadius: 1, 
+      borderColor: 'black', 
+      marginHorizontal : 20 , 
+      marginVertical : 10
+    },
+    pickerStyle: {
+      height: 50
+    },
+    container: {
+      paddingTop: 30,
+      backgroundColor: '#fff',
+      justifyContent: 'center',
+      paddingHorizontal: 10,
+  },
+
   });
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        fontSize: 16,
+        paddingTop: 13,
+        paddingHorizontal: 10,
+        paddingBottom: 12,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 4,
+        backgroundColor: 'white',
+        color: 'black',
+    },
+});
