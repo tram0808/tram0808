@@ -6,7 +6,7 @@ export default class Filter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            favColor: undefined,
+            filterMode: 'Show_All',
             items: [
                 {label: 'Show All',value: 'Show_All',},
                 {label: 'Show Forgot',value: 'Show_Forgot',},
@@ -19,17 +19,17 @@ export default class Filter extends React.Component {
             <View style={styles.container}>
                 <RNPickerSelect
                     placeholder={{
-                        label: 'Select a color...',
+                        label: 'Show_All...',
                         value: null,
                     }}
                     items={this.state.items}
-                    onValueChange={(value) => {
+                    onValueChange={(itemValue) => {
                         this.setState({
-                            favColor: value,
+                            filterMode: itemValue,
                         });
                     }}
                     style={{ ...pickerSelectStyles }}
-                    value={this.state.favColor}
+                    value={this.state.filterMode}
                 />
             </View>
         );

@@ -1,75 +1,41 @@
 import React, { Component } from 'react'
-import {Text,KeyboardAvoidingView,TextInput,TouchableOpacity,View,} from 'react-native';
+import {Text,KeyboardAvoidingView,TextInput,TouchableOpacity,View,StyleSheet} from 'react-native';
 
 export default class Form extends Component {
     constructor(props) {
         super(props);
         this.txtEn = '';
         this.txtVn = '';
-        this.state = {
-          shouldShowform: false,
-        };
       }
-      toggleForm = () => {
-        this.setState({shouldShowform: !this.state.shouldShowform});
-      };
       renderForm = () => {
-        if (this.state.shouldShowform) {
+        if (this.props.shouldShowform) {
           return (
                 <View>
                     <TextInput
-                    style={{
-                        height: 50,
-                        borderColor: 'black',
-                        borderWidth: 1,
-                        margin: 10,
-                        fontSize: 20,
-                        paddingHorizontal: 20,
-                        }}
+                    style={styles.textStyleEn}
                         placeholder="English"
                         onChangeText={text => (this.txtEn = text)}
                     />
                     <TextInput
-                    style={{
-                        height: 50,
-                        borderColor: 'black',
-                        borderWidth: 1,
-                        margin: 10,
-                        fontSize: 20,
-                        paddingHorizontal: 20,
-                        }}
+                    style={styles.textStyleVn}
                         placeholder="Vietnamese"
                         onChangeText={text => (this.txtVn = text)}
                     />
                     <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-around',
-                            marginTop: 20,
-                        }}>
-                        <TouchableOpacity
-                        onPress={() => {
-                            console.log(this.txtEn, this.txtVn);
-                        }}
-                        style={{
-                            backgroundColor: '#28a745',
-                            padding: 15,
-                            borderRadius: 8,
-                        }}>
-                        <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>
-                            Add word
-                        </Text>   
+                        style={styles.containerButtonForm}>
+                        <TouchableOpacity>
+                            onPress{this.addword}
+                            style={styles.backgroundAddWord}
+                            <Text style={styles.textTouchableAddWord}>
+                                Add word
+                            </Text>  
                         </TouchableOpacity>
                         <TouchableOpacity
-                        onPress={() => this.toggleForm()}
-                        style={{
-                            backgroundColor: 'red',
-                            padding: 15,
-                            borderRadius: 8,
-                        }}>
-                        <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>
-                            Cancel
-                        </Text>
+                            onPress={() => this.toggleForm()}
+                            style={styles.backgroundCanel}>
+                            <Text style={styles.textTouchableCanel}>
+                                Cancel
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -78,18 +44,9 @@ export default class Form extends Component {
             return (
                 <TouchableOpacity
                 onPress={() => this.toggleForm()}
-                style={{
-                    marginHorizontal: 20,
-                    paddingVertical: 15,
-                    backgroundColor: '#28a745',
-                    alignItems: 'center',
-                    borderRadius: 5,
-                }}>
+                style={styles.backgroundPluss}>
                 <Text
-                    style={{
-                    color: 'white',
-                    fontSize: 20,
-                    }}>
+                    style={styles.textPluss}>
                     +
                 </Text>
                 </TouchableOpacity>
@@ -104,3 +61,57 @@ export default class Form extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+    textStyleEn:{
+        height: 50,
+        borderColor: 'black',
+        borderWidth: 1,
+        margin: 10,
+        fontSize: 20,
+        paddingHorizontal: 20,
+    },
+    textStyleVn:{
+        height: 50,
+        borderColor: 'black',
+        borderWidth: 1,
+        margin: 10,
+        fontSize: 20,
+        paddingHorizontal: 20,
+    },
+    containerButtonForm: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 20,
+    },
+    backgroundAddWord:{
+        backgroundColor: '#28a745',
+        padding: 15,
+        borderRadius: 8,
+    },
+    textTouchableAddWord:{
+        fontSize: 20, 
+        fontWeight: 'bold', 
+        color: 'white'
+    },
+    backgroundCanel:{
+        backgroundColor: 'red',
+        padding: 15,
+        borderRadius: 8,
+    },
+    textTouchableCanel:{
+        fontSize: 20, 
+        fontWeight: 'bold', 
+        color: 'white'
+    },
+    backgroundPluss:{
+        marginHorizontal: 20,
+        paddingVertical: 15,
+        backgroundColor: '#28a745',
+        alignItems: 'center',
+        borderRadius: 5,
+    },
+    textPluss:{
+        color: 'white',
+        fontSize: 20,
+    },
+});
