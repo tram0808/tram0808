@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { PureComponent } from 'react';
 
-export default class Child extends Component {
+export default class Child extends PureComponent {
     constructor (props){
         super (props)
         this.state ={
-            count :0
+            text :''
         };
-        console.log('Constructor');
     }
-
     render() {
         console.log('render Child');
+        const {onIncrease, count, onDecrease, onReset} = this.props
         return (
             <View
           style={{
@@ -20,7 +20,7 @@ export default class Child extends Component {
             justifyContent: 'space-evenly',
           }}>
             <TouchableOpacity 
-            onPress={this.increase}
+            onPress={() => onIncrease(count)}
             style={{backgroundColor: 'green', padding: 10}}>
                 <Text style={{
                     color: 'white', 
@@ -30,7 +30,7 @@ export default class Child extends Component {
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-            onPress={this.decrease}
+            onPress={() => onDecrease(count)}
             style={{
                 backgroundColor: 'red', 
                 padding: 10}}>
@@ -42,7 +42,7 @@ export default class Child extends Component {
                 </Text>
           </TouchableOpacity>
           <TouchableOpacity 
-            onPress={this.reset}
+            onPress={() => onReset(count)}
             style={{
               backgroundColor: 'slategray', 
               padding: 10}}>
