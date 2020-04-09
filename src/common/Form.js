@@ -1,14 +1,30 @@
 import React, { Component } from 'react'
 import {Text,KeyboardAvoidingView,TextInput,TouchableOpacity,View,StyleSheet} from 'react-native';
+import { PureComponent } from 'react';
 
-export default class Form extends Component {
+export default class Form extends PureComponent {
     constructor(props) {
         super(props);
         this.txtEn = '';
         this.txtVn = '';
-      }
+    };
+    addWord= () => {
+        const {words, onAddword} = this.props;
+        const newWord = {
+            id: words.length + 1 + '',
+            en: this.txtEn,
+            vn: this.txtVn,
+            isMemorized: false,
+        };
+        const newWords = Object.assign([], words);
+        newWords.splice(0, 0, newWord);
+        this.txtVn = '';
+        this.txtEn = '';
+        onAddword(newWords);
+    };
     renderForm = () => {
-    if (this.props.shouldShowform) {
+        const {onToggleForm, shouldShowform, words, onAddword} = this.props;
+    if (shouldShowform) {
         return (
             <View>
                 <TextInput
@@ -21,17 +37,16 @@ export default class Form extends Component {
                     placeholder="Vietnamese"
                     onChangeText={text => (this.txtVn = text)}
                 />
-                <View
-                    style={styles.containerButtonForm}>
-                    <TouchableOpacity>
-                        onPress{this.addword}
-                        style={styles.backgroundAddWord}
+                <View style={styles.containerButtonForm}>
+                    <TouchableOpacity
+                    onPress={() => this.addWord()}
+                    style={styles.backgroundAddWord}>
                         <Text style={styles.textTouchableAddWord}>
                             Add word
                         </Text>  
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => this.toggleForm()}
+                        onPress={() => onToggleForm(!shouldShowform)}
                         style={styles.backgroundCanel}>
                         <Text style={styles.textTouchableCanel}>
                             Cancel
@@ -43,12 +58,9 @@ export default class Form extends Component {
 }   else {
         return (
             <TouchableOpacity
-            onPress={() => this.toggleForm()}
+            onPress={() => onToggleForm(!shouldShowform)}
             style={styles.backgroundPluss}>
-            <Text
-                style={styles.textPluss}>
-                +
-            </Text>
+            <Text style={styles.textPluss}>+</Text>
             </TouchableOpacity>
         );
     }

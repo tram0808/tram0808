@@ -44,26 +44,20 @@ export default class List extends Component {
     const newWords = this.state.words.filter(item => item.id !== id);
     this.setState({words: newWords});
   };
-  toggleForm = () => {
-    this.setState({shouldShowform: !this.state.shouldShowform});
+  onToggleForm = shouldShowform => {
+    this.setState({shouldShowform: shouldShowform});
   };
-  addword = () => {
-      const newWord = {
-        id: this.state.words.length + 1 + '',
-        en: this.txtEn,
-        vn: this.txtVn,
-        isMemorized: false,
-      };
-      const newWords = Object.assign([], this.state.words);
-      newWords.splice(0, 0, newWord);
-      this.txtVn = '';
-      this.txtEn = '';
-      this,this.setState({words: newWords, shouldShowform: false});
-    };
+  onAddword = words => {
+    this.setState({words, shouldShowform: false});
+  };
     render (){
       return (
         <ScrollView style={styles.container}>
-          <Form shouldShowform={this.state.shouldShowform} />
+          <Form 
+            onAddword={this.onAddword}
+            words={this.state.words}
+            shouldShowform={this.state.shouldShowform}
+            onToggleForm={this.onToggleForm} />
           <Filter filterMode={this.state.filterMode} />
           <Word words={this.state.words} filterMode={this.state.filterMode} />
         </ScrollView>

@@ -10,12 +10,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <ScrollView showsVerticalScrollIndicator={false}>
+        
           <List />
-        </ScrollView> */}
-        {/* <Filter/> */}
-     
-          <Box/>
     </View>
     );
   }
