@@ -5,6 +5,7 @@ import MyFatlist from './src/common/MyFatlist';
 import Form from './src/common/Form';
 import List from './src/common/List';
 import Filter from './src/common/Filter';
+import Box from './src/common/Box';
 export default class App extends Component {
   render() {
     return (
@@ -14,7 +15,7 @@ export default class App extends Component {
         </ScrollView> */}
         {/* <Filter/> */}
      
-          <List/>
+          <Box/>
     </View>
     );
   }

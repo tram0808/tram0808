@@ -7,52 +7,52 @@ export default class Form extends Component {
         this.txtEn = '';
         this.txtVn = '';
       }
-      renderForm = () => {
-        if (this.props.shouldShowform) {
-          return (
-                <View>
-                    <TextInput
-                    style={styles.textStyleEn}
-                        placeholder="English"
-                        onChangeText={text => (this.txtEn = text)}
-                    />
-                    <TextInput
-                    style={styles.textStyleVn}
-                        placeholder="Vietnamese"
-                        onChangeText={text => (this.txtVn = text)}
-                    />
-                    <View
-                        style={styles.containerButtonForm}>
-                        <TouchableOpacity>
-                            onPress{this.addword}
-                            style={styles.backgroundAddWord}
-                            <Text style={styles.textTouchableAddWord}>
-                                Add word
-                            </Text>  
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.toggleForm()}
-                            style={styles.backgroundCanel}>
-                            <Text style={styles.textTouchableCanel}>
-                                Cancel
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
+    renderForm = () => {
+    if (this.props.shouldShowform) {
+        return (
+            <View>
+                <TextInput
+                style={styles.textStyleEn}
+                    placeholder="English"
+                    onChangeText={text => (this.txtEn = text)}
+                />
+                <TextInput
+                style={styles.textStyleVn}
+                    placeholder="Vietnamese"
+                    onChangeText={text => (this.txtVn = text)}
+                />
+                <View
+                    style={styles.containerButtonForm}>
+                    <TouchableOpacity>
+                        onPress{this.addword}
+                        style={styles.backgroundAddWord}
+                        <Text style={styles.textTouchableAddWord}>
+                            Add word
+                        </Text>  
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => this.toggleForm()}
+                        style={styles.backgroundCanel}>
+                        <Text style={styles.textTouchableCanel}>
+                            Cancel
+                        </Text>
+                    </TouchableOpacity>
                 </View>
-            );
-    }   else {
-            return (
-                <TouchableOpacity
-                onPress={() => this.toggleForm()}
-                style={styles.backgroundPluss}>
-                <Text
-                    style={styles.textPluss}>
-                    +
-                </Text>
-                </TouchableOpacity>
-            );
-        }
-    };
+            </View>
+        );
+}   else {
+        return (
+            <TouchableOpacity
+            onPress={() => this.toggleForm()}
+            style={styles.backgroundPluss}>
+            <Text
+                style={styles.textPluss}>
+                +
+            </Text>
+            </TouchableOpacity>
+        );
+    }
+};
   render() {
     return (
       <KeyboardAvoidingView behavior="height">

@@ -4,71 +4,71 @@ import RNPickerSelect from 'react-native-picker-select';
 import Form from './Form';
 import Filter from './Filter';
 import Word from './Word';
-  export default class List extends Component {
-    constructor(props) {
-      super(props);
-      this.txtEn = '';
-      this.txtVn = '';
-      this.state = {
-        words: [
-          {id: '1', en: 'One', vn: 'Mot', isMemorized: true},
-          {id: '2', en: 'Two', vn: 'Hai', isMemorized: false},
-          {id: '3', en: 'Three', vn: 'Ba', isMemorized: false},
-          {id: '4', en: 'Four', vn: 'Bon', isMemorized: false},
-          {id: '5', en: 'Five', vn: 'Nam', isMemorized: false},
-          {id: '6', en: 'Six', vn: 'Sau', isMemorized: true},
-          {id: '7', en: 'Seven', vn: 'Bay', isMemorized: false},
-          {id: '8', en: 'Eight', vn: 'Tam', isMemorized: true},
-          {id: '9', en: 'Nine', vn: 'Chin', isMemorized: false},
-          {id: '10', en: 'Ten', vn: 'Muoi', isMemorized: true},
-        ],
-        shouldShowform: false,
-        filterMode: 'Show_All',
-          items: [
-              {label: 'Show All',value: 'Show_All',},
-              {label: 'Show Forgot',value: 'Show_Forgot',},
-              {label: 'Show Memorized',value: 'Show_Memorized',},
-          ],         
-      };
-    }
-    toggleMemorized = id => {
-      const newWords = this.state.words.map(item => {
-        if (item.id === id) {
-          return {...item, isMemorized: !item.isMemorized};
-        }
-        return item;
-      });
-      this.setState({words: newWords});
+export default class List extends Component {
+  constructor(props) {
+    super(props);
+    this.txtEn = '';
+    this.txtVn = '';
+    this.state = {
+      words: [
+        {id: '1', en: 'One', vn: 'Mot', isMemorized: true},
+        {id: '2', en: 'Two', vn: 'Hai', isMemorized: false},
+        {id: '3', en: 'Three', vn: 'Ba', isMemorized: false},
+        {id: '4', en: 'Four', vn: 'Bon', isMemorized: false},
+        {id: '5', en: 'Five', vn: 'Nam', isMemorized: false},
+        {id: '6', en: 'Six', vn: 'Sau', isMemorized: true},
+        {id: '7', en: 'Seven', vn: 'Bay', isMemorized: false},
+        {id: '8', en: 'Eight', vn: 'Tam', isMemorized: true},
+        {id: '9', en: 'Nine', vn: 'Chin', isMemorized: false},
+        {id: '10', en: 'Ten', vn: 'Muoi', isMemorized: true},
+      ],
+      shouldShowform: false,
+      filterMode: 'Show_All',
+        items: [
+            {label: 'Show All',value: 'Show_All',},
+            {label: 'Show Forgot',value: 'Show_Forgot',},
+            {label: 'Show Memorized',value: 'Show_Memorized',},
+        ],         
     };
-    removeWord = id => {
-      const newWords = this.state.words.filter(item => item.id !== id);
-      this.setState({words: newWords});
-    };
-    toggleForm = () => {
-      this.setState({shouldShowform: !this.state.shouldShowform});
-    };
-    addword = () => {
-        const newWord = {
-          id: this.state.words.length + 1 + '',
-          en: this.txtEn,
-          vn: this.txtVn,
-          isMemorized: false,
-        };
-        const newWords = Object.assign([], this.state.words);
-        newWords.splice(0, 0, newWord);
-        this.txtVn = '';
-        this.txtEn = '';
-       this,this.setState({words: newWords, shouldShowform: false});
-      };
-      render (){
-        return (
-          <ScrollView style={styles.container}>
-            <Form shouldShowform={this.state.shouldShowform} />
-            <Filter filterMode={this.state.filterMode} />
-            <Word words={this.state.words} filterMode={this.state.filterMode} />
-          </ScrollView>
-      );
   }
+  toggleMemorized = id => {
+    const newWords = this.state.words.map(item => {
+      if (item.id === id) {
+        return {...item, isMemorized: !item.isMemorized};
+      }
+      return item;
+    });
+    this.setState({words: newWords});
+  };
+  removeWord = id => {
+    const newWords = this.state.words.filter(item => item.id !== id);
+    this.setState({words: newWords});
+  };
+  toggleForm = () => {
+    this.setState({shouldShowform: !this.state.shouldShowform});
+  };
+  addword = () => {
+      const newWord = {
+        id: this.state.words.length + 1 + '',
+        en: this.txtEn,
+        vn: this.txtVn,
+        isMemorized: false,
+      };
+      const newWords = Object.assign([], this.state.words);
+      newWords.splice(0, 0, newWord);
+      this.txtVn = '';
+      this.txtEn = '';
+      this,this.setState({words: newWords, shouldShowform: false});
+    };
+    render (){
+      return (
+        <ScrollView style={styles.container}>
+          <Form shouldShowform={this.state.shouldShowform} />
+          <Filter filterMode={this.state.filterMode} />
+          <Word words={this.state.words} filterMode={this.state.filterMode} />
+        </ScrollView>
+    );
+}
 }
 
   const styles = StyleSheet.create({

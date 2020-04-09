@@ -6,7 +6,6 @@ export default class Filter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            filterMode: 'Show_All',
             items: [
                 {label: 'Show All',value: 'Show_All',},
                 {label: 'Show Forgot',value: 'Show_Forgot',},
