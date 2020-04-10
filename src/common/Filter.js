@@ -23,9 +23,7 @@ export default class Filter extends React.Component {
                     }}
                     items={this.state.items}
                     onValueChange={(itemValue) => {
-                        this.setState({
-                            filterMode: itemValue,
-                        });
+                        this.props.onFilterMode(itemValue);
                     }}
                     style={{ ...pickerSelectStyles }}
                     value={this.state.filterMode}
