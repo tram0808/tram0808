@@ -6,12 +6,28 @@ import Form from './src/common/Form';
 import List from './src/common/List';
 import Filter from './src/common/Filter';
 import Box from './src/common/Box';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
+const store = createStore((state = 0, action) => {
+  if (action.type === 'INCREMENT') {
+    return state + 1;
+  }
+  if (action.type === 'DECREMENT') {
+    return state - 1;
+  }
+  if (action.type === 'RESET') {
+    return 0;
+  }
+  return state;
+});
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
-          <List />
+        <Provider store={store}>
+          <Box />
+        </Provider>
     </View>
     );
   }
@@ -24,5 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-//make this component available to the app
 
