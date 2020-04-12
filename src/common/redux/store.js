@@ -15,12 +15,30 @@ const defaultWords = [
 
 
 function wordsReducer(state = defaultWords, action ){
+    if (action.type === 'ON_ADD_WORD') {
+        return action.words;
+    }
+    if (action.type === 'ON_REMOVE_WORD') {
+        return action.words
+    }
+    if (action.type === 'ON_TOGGLE_MEMORIZED_WORD') {
+      return action.words;
+    }
     return state;
 }
-function filtemodeReducer(state = 'Show_All', action ){
+function filtemodeReducer(state ='Show_All', action ){
+    if (action.type === 'ON_SET_FILTER_MODE') {
+      return action.filtermode;
+    }
     return state;
 }
 function  shouldShowformReducer(state = false, action ){
+    if (action.type === 'ON_TOGGLE_FORM') {
+        return action.shouldShowform;
+    }
+    if (action.type === 'ON_ADD_WORD') {
+      return action.words;
+    }
     return state;
 }
 
@@ -31,5 +49,6 @@ const reducer = combineReducers({
 });
 
 const store = createStore(reducer);
+
 
   export default store;

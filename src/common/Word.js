@@ -11,7 +11,7 @@ class Word extends Component {
       }
       return item;
     });
-    this.props.dispatch({type: 'ON_TOGGLE_MEMORIZED',words:newWords});
+    this.props.dispatch({type: 'ON_TOGGLE_MEMORIZED_WORD',words:newWords});
   };
   removeWord = id => {
     const newWords = this.props.words.filter(item => item.id !== id);
