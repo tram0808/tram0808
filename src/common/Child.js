@@ -12,7 +12,7 @@ class Child extends PureComponent {
         justifyContent: 'space-evenly',
       }}>
         <TouchableOpacity 
-        onPress={() => this.props.dispatch({type: 'INCREMENT'})}
+        onPress={() => this.props.dispatch({type: 'INCREASE'})}
         style={{backgroundColor: 'green', padding: 10}}>
           <Text style={{
               color: 'white', 

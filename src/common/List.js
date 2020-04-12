@@ -1,36 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component,PureComponent} from 'react';
 import {Text,View,StyleSheet,ScrollView} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import Form from './Form';
 import Filter from './Filter';
 import Word from './Word';
-export default class List extends Component {
-  constructor(props) {
-    super(props);
-    this.txtEn = '';
-    this.txtVn = '';
-    this.state = {
-      words: [
-        {id: '1', en: 'One', vn: 'Mot', isMemorized: true},
-        {id: '2', en: 'Two', vn: 'Hai', isMemorized: false},
-        {id: '3', en: 'Three', vn: 'Ba', isMemorized: false},
-        {id: '4', en: 'Four', vn: 'Bon', isMemorized: false},
-        {id: '5', en: 'Five', vn: 'Nam', isMemorized: false},
-        {id: '6', en: 'Six', vn: 'Sau', isMemorized: true},
-        {id: '7', en: 'Seven', vn: 'Bay', isMemorized: false},
-        {id: '8', en: 'Eight', vn: 'Tam', isMemorized: true},
-        {id: '9', en: 'Nine', vn: 'Chin', isMemorized: false},
-        {id: '10', en: 'Ten', vn: 'Muoi', isMemorized: true},
-      ],
-      shouldShowform: false,
-      filtermode: 'Show_All',
-        items: [
-            {label: 'Show All',value: 'Show_All',},
-            {label: 'Show Forgot',value: 'Show_Forgot',},
-            {label: 'Show Memorized',value: 'Show_Memorized',},
-        ],         
-    };
-  }
+import {connect} from 'react-redux';
+
+class List extends PureComponent {
   onToggleMemorized = id => {
     const newWords = this.state.words.map(item => {
       if (item.id === id) {
@@ -56,19 +32,15 @@ export default class List extends Component {
     render (){
       return (
         <ScrollView style={styles.container}>
-          <Form 
+          {/* <Form 
             onAddword={this.onAddword}
             words={this.state.words}
             shouldShowform={this.state.shouldShowform}
             onToggleForm={this.onToggleForm} />
           <Filter 
             filtermode={this.state.filtermode}
-            onFilterMode={this.onFilterMode} />
-          <Word 
-            onRemoveWord={this.onRemoveWord}
-            onToggleMemorized={this.onToggleMemorized}
-            words={this.state.words} 
-            filtermode={this.state.filtermode} />
+            onFilterMode={this.onFilterMode} /> */}
+          <Word  />
         </ScrollView>
     );
 }
@@ -121,3 +93,5 @@ export default class List extends Component {
     },
 
   });
+
+export default connect()(List);

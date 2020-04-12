@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-
+import {connect} from 'react-redux';
 // create a component
 class Word extends Component {
   renderItemFlatlist = item => {
@@ -52,8 +52,6 @@ class Word extends Component {
     }
   }
 
-
-// define your styles
 const styles = StyleSheet.create({
   containerGroupWord: {
       justifyContent: 'space-between',
@@ -101,5 +99,7 @@ const styles = StyleSheet.create({
 
 });
 
-//make this component available to the app
-export default Word;
+const mapStateToProps = function(state) {
+  return{ words: state.words, filtermode: state.filtermode};
+}
+export default connect(mapStateToProps)(Word);
