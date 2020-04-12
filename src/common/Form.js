@@ -9,7 +9,7 @@ class Form extends PureComponent {
         this.txtVn = '';
     };
     addWord= () => {
-        const {words, onAddword} = this.props;
+        const {words} = this.props;
         const newWord = {
             id: words.length + 1 + '',
             en: this.txtEn,
@@ -20,7 +20,7 @@ class Form extends PureComponent {
         newWords.splice(0, 0, newWord);
         this.txtVn = '';
         this.txtEn = '';
-        onAddword(newWords);
+        this.props.dispatch({type: 'ON_ADD_WORD', words:newWords});
     };
     toggleForm = (shouldShowform) => {
         this.props.dispatch({type: 'ON_TOGGLE_FORM',  shouldShowform});
@@ -131,6 +131,6 @@ const styles = StyleSheet.create({
     },
 });
 const mapStoreToProps = function(state) {
-    return{shouldShowform: state.shouldShowform};
+    return{words:state.words, shouldShowform: state.shouldShowform};
 }
 export default connect(mapStoreToProps)(Form);

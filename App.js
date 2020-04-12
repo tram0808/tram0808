@@ -34,6 +34,9 @@ const store = createStore((state = defaultStore, action) => {
   if(action.type === 'ON_TOGGLE_FORM'){
     return{...state, shouldShowform:action.shouldShowform};
   }
+  if(action.type === 'ON_ADD_WORD'){
+    return{...state, shouldShowform:false, words:action.words }
+  }
   return state;
 });
 class App extends Component {
