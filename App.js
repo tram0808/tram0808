@@ -43,6 +43,9 @@ const store = createStore((state = defaultStore, action) => {
   if(action.type === 'ON_TOGGLE_MEMORIZED'){
     return{...state, words:action.words}
   }
+  if(action.type === 'ON_SET_FILTER_MODE'){
+    return{...state, filtermode:action.filtermode}
+  }
   return state;
 });
 class App extends Component {

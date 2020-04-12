@@ -15,6 +15,9 @@ class Filter extends React.Component {
             ],             
         };
     }
+    onFilterMode = filtermode => {
+        this.setState({filtermode});
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -25,7 +28,7 @@ class Filter extends React.Component {
                     }}
                     items={this.state.items}
                     onValueChange={(itemValue) => {
-                        this.props.onFilterMode(itemValue);
+                        this.props.dispatch({type: 'ON_SET_FILTER_MODE', filtermode:itemValue});
                     }}
                     style={{ ...pickerSelectStyles }}
                     value={this.state.filterMode}
