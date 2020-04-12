@@ -1,8 +1,10 @@
 import React from 'react';
-import { Alert, Text, TextInput, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
+import {connect} from 'react-redux';
+
 // Picker cho giao dien ios
-export default class Filter extends React.Component {
+class Filter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,3 +57,8 @@ const pickerSelectStyles = StyleSheet.create({
         color: 'black',
     },
 });
+
+const mapStoreToProps = function(state){
+    return{filterMode: state.filterMode};
+}
+export default connect(mapStoreToProps)(Filter);

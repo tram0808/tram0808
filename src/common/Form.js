@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {Text,KeyboardAvoidingView,TextInput,TouchableOpacity,View,StyleSheet} from 'react-native';
 import { PureComponent } from 'react';
-
-export default class Form extends PureComponent {
+import {connect} from 'react-redux';
+class Form extends PureComponent {
     constructor(props) {
         super(props);
         this.txtEn = '';
@@ -127,3 +127,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
 });
+const mapStoreToProps = function(state) {
+    return{shouldShowform: state.shouldShowform};
+}
+export default connect(mapStoreToProps)(Form);

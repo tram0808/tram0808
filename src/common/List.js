@@ -32,14 +32,8 @@ class List extends Component {
     render (){
       return (
         <ScrollView style={styles.container}>
-          {/* <Form 
-            onAddword={this.onAddword}
-            words={this.state.words}
-            shouldShowform={this.state.shouldShowform}
-            onToggleForm={this.onToggleForm} />
-          <Filter 
-            filtermode={this.state.filtermode}
-            onFilterMode={this.onFilterMode} /> */}
+          <Form />
+          <Filter />
           <Word  />
         </ScrollView>
     );

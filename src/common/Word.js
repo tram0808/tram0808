@@ -13,22 +13,22 @@ class Word extends Component {
   return (
     <View style={styles.containerGroupWord} key={item.id}>
         <View style={styles.groupText}>
-            <Text style={styles.textEn}> {item.en} </Text>
-            <Text style={styles.textVn}> {item.isMemorized ? '---': item.vn} </Text>
+          <Text style={styles.textEn}> {item.en} </Text>
+          <Text style={styles.textVn}> {item.isMemorized ? '---': item.vn} </Text>
         </View>
         <View style={styles.groupButton}>
-            <TouchableOpacity 
-            onPress={() => this.props.onToggleMemorized(item.id)}
-            style={styles.buttonMemorized(item.isMemorized)}>
-                <Text style={styles.textMemorized}>
-                    {item.isMemorized ? 'Forgot' : 'Memorized' }
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-            onPress={() => this.props.onRemoveWord(item.id)}
-            style={styles.buttonRemove}>
-                <Text style={styles.textRemove}>Remove</Text>
-            </TouchableOpacity>
+          <TouchableOpacity 
+          onPress={() => this.props.onToggleMemorized(item.id)}
+          style={styles.buttonMemorized(item.isMemorized)}>
+            <Text style={styles.textMemorized}>
+              {item.isMemorized ? 'Forgot' : 'Memorized' }
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+          onPress={() => this.props.onRemoveWord(item.id)}
+          style={styles.buttonRemove}>
+            <Text style={styles.textRemove}>Remove</Text>
+          </TouchableOpacity>
         </View>
     </View>
   );
