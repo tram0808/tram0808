@@ -4,6 +4,10 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native
 import {connect} from 'react-redux';
 // create a component
 class Word extends Component {
+  removeWord = id => {
+    const newWords = this.props.words.filter(item => item.id !== id);
+    this.props.dispatch({type: 'ON_REMOVE_WORD',words:newWords})
+  };
   renderItemFlatlist = item => {
     if(this.props.filtermode === 'Show_Forgot' && !item.isMemorized){
       return null;
@@ -25,7 +29,7 @@ class Word extends Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity 
-          onPress={() => this.props.onRemoveWord(item.id)}
+          onPress={() => this.removeWord(item.id)}
           style={styles.buttonRemove}>
             <Text style={styles.textRemove}>Remove</Text>
           </TouchableOpacity>

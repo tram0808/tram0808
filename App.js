@@ -37,6 +37,9 @@ const store = createStore((state = defaultStore, action) => {
   if(action.type === 'ON_ADD_WORD'){
     return{...state, shouldShowform:false, words:action.words }
   }
+  if(action.type === 'ON_REMOVE_WORD'){
+    return{...state, words:action.words}
+  }
   return state;
 });
 class App extends Component {
