@@ -24,13 +24,16 @@ const defaultStore = {
   ],
   shouldShowform: false,
   filtermode: 'Show_All',
-    items: [
-        {label: 'Show All',value: 'Show_All',},
-        {label: 'Show Forgot',value: 'Show_Forgot',},
-        {label: 'Show Memorized',value: 'Show_Memorized',},
-    ],         
+  items: [
+      {label: 'Show All',value: 'Show_All',},
+      {label: 'Show Forgot',value: 'Show_Forgot',},
+      {label: 'Show Memorized',value: 'Show_Memorized',},
+  ],         
 };
 const store = createStore((state = defaultStore, action) => {
+  if(action.type === 'ON_TOGGLE_FORM'){
+    return{...state, shouldShowform:action.shouldShowform};
+  }
   return state;
 });
 class App extends Component {

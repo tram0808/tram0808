@@ -22,8 +22,11 @@ class Form extends PureComponent {
         this.txtEn = '';
         onAddword(newWords);
     };
+    toggleForm = (shouldShowform) => {
+        this.props.dispatch({type: 'ON_TOGGLE_FORM',  shouldShowform});
+    }
     renderForm = () => {
-        const {onToggleForm, shouldShowform, words, onAddword} = this.props;
+        const { shouldShowform} = this.props;
     if (shouldShowform) {
         return (
             <View>
@@ -46,7 +49,7 @@ class Form extends PureComponent {
                         </Text>  
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => onToggleForm(!shouldShowform)}
+                        onPress={() => this.toggleForm(!shouldShowform)}
                         style={styles.backgroundCanel}>
                         <Text style={styles.textTouchableCanel}>
                             Cancel
@@ -58,7 +61,7 @@ class Form extends PureComponent {
 }   else {
         return (
             <TouchableOpacity
-            onPress={() => onToggleForm(!shouldShowform)}
+            onPress={() => this.toggleForm(!shouldShowform)}
             style={styles.backgroundPluss}>
             <Text style={styles.textPluss}>+</Text>
             </TouchableOpacity>
