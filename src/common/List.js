@@ -6,7 +6,7 @@ import Filter from './Filter';
 import Word from './Word';
 import {connect} from 'react-redux';
 
-class List extends PureComponent {
+class List extends Component {
   onToggleMemorized = id => {
     const newWords = this.state.words.map(item => {
       if (item.id === id) {
