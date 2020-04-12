@@ -40,6 +40,9 @@ const store = createStore((state = defaultStore, action) => {
   if(action.type === 'ON_REMOVE_WORD'){
     return{...state, words:action.words}
   }
+  if(action.type === 'ON_TOGGLE_MEMORIZED'){
+    return{...state, words:action.words}
+  }
   return state;
 });
 class App extends Component {

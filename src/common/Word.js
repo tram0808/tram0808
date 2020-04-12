@@ -4,6 +4,15 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native
 import {connect} from 'react-redux';
 // create a component
 class Word extends Component {
+  toggleMemorized = id => {
+    const newWords = this.props.words.map(item => {
+      if (item.id === id) {
+        return {...item, isMemorized: !item.isMemorized};
+      }
+      return item;
+    });
+    this.props.dispatch({type: 'ON_TOGGLE_MEMORIZED',words:newWords});
+  };
   removeWord = id => {
     const newWords = this.props.words.filter(item => item.id !== id);
     this.props.dispatch({type: 'ON_REMOVE_WORD',words:newWords})
@@ -22,7 +31,7 @@ class Word extends Component {
         </View>
         <View style={styles.groupButton}>
           <TouchableOpacity 
-          onPress={() => this.props.onToggleMemorized(item.id)}
+          onPress={() => this.toggleMemorized(item.id)}
           style={styles.buttonMemorized(item.isMemorized)}>
             <Text style={styles.textMemorized}>
               {item.isMemorized ? 'Forgot' : 'Memorized' }

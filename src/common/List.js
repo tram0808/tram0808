@@ -7,15 +7,6 @@ import Word from './Word';
 import {connect} from 'react-redux';
 
 class List extends Component {
-  onToggleMemorized = id => {
-    const newWords = this.state.words.map(item => {
-      if (item.id === id) {
-        return {...item, isMemorized: !item.isMemorized};
-      }
-      return item;
-    });
-    this.setState({words: newWords});
-  };
   onRemoveWord = id => {
     const newWords = this.state.words.filter(item => item.id !== id);
     this.setState({words: newWords});
