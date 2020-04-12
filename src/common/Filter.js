@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         paddingTop: 30,
         backgroundColor: '#fff',
         justifyContent: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 17,
     },
 });
 
