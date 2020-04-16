@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Text,KeyboardAvoidingView,TextInput,TouchableOpacity,View,StyleSheet} from 'react-native';
 import { PureComponent } from 'react';
 import {connect} from 'react-redux';
+import actioncreator from './redux/action/actioncreator';
+
 class Form extends PureComponent {
     constructor(props) {
         super(props);
@@ -20,10 +22,10 @@ class Form extends PureComponent {
         newWords.splice(0, 0, newWord);
         this.txtVn = '';
         this.txtEn = '';
-        this.props.dispatch({type: 'ON_ADD_WORD', words:newWords});
+        this.props.onAddWord(newWords);
     };
     toggleForm = (shouldShowform) => {
-        this.props.dispatch({type: 'ON_TOGGLE_FORM',  shouldShowform});
+        this.props.onToggleForm(shouldShowform);
     }
     renderForm = () => {
         const { shouldShowform} = this.props;
@@ -133,4 +135,4 @@ const styles = StyleSheet.create({
 const mapStoreToProps = function(state) {
     return{words:state.words, shouldShowform: state.shouldShowform};
 }
-export default connect(mapStoreToProps)(Form);
+export default connect(mapStoreToProps, actioncreator)(Form);

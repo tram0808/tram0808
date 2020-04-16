@@ -1,6 +1,6 @@
-import filtemodeReducer from './src/common/redux/reducer/filtemodeReducer';
-import wordsReducer from './src/common/redux/reducer/wordsReducer';
-import shouldShowformReducer from './src/common/redux/reducer/shouldShowformReducer';
+import filtemodeReducer from './filtemodeReducer';
+import wordsReducer from './wordsReducer';
+import shouldShowformReducer from './shouldShowformReducer';
 import { combineReducers } from 'redux';
 
 const reducer = combineReducers({
@@ -9,4 +9,4 @@ const reducer = combineReducers({
     shouldShowform: shouldShowformReducer,
 });
 
-export default rootReducer;
+export default reducer;

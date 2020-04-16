@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import {connect} from 'react-redux';
+import actioncreator from './redux/action/actioncreator';
+
 
 // Picker cho giao dien ios
 class Filter extends React.Component {
@@ -27,9 +29,7 @@ class Filter extends React.Component {
                         value: null,
                     }}
                     items={this.state.items}
-                    onValueChange={(itemValue) => {
-                        this.props.dispatch({type: 'ON_SET_FILTER_MODE', filtermode:itemValue});
-                    }}
+                    onValueChange = {itemValue => this.props.onSetFilterMode(itemValue)}
                     style={{ ...pickerSelectStyles }}
                     value={this.state.filterMode}
                 />
@@ -64,4 +64,4 @@ const pickerSelectStyles = StyleSheet.create({
 const mapStoreToProps = function(state){
     return{filterMode: state.filterMode};
 }
-export default connect(mapStoreToProps)(Filter);
+export default connect(mapStoreToProps, actioncreator)(Filter);

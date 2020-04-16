@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import {connect} from 'react-redux';
+import actioncreator from './redux/action/actioncreator';
 // create a component
 class Word extends Component {
   toggleMemorized = id => {
@@ -11,11 +12,11 @@ class Word extends Component {
       }
       return item;
     });
-    this.props.dispatch({type: 'ON_TOGGLE_MEMORIZED_WORD',words:newWords});
+    this.props.onToggleMemorized(newWords);
   };
   removeWord = id => {
     const newWords = this.props.words.filter(item => item.id !== id);
-    this.props.dispatch({type: 'ON_REMOVE_WORD',words:newWords})
+    this.props.onRemoveWord(newWords);
   };
   renderItemFlatlist = item => {
     if(this.props.filtermode === 'Show_Forgot' && !item.isMemorized){
@@ -115,4 +116,4 @@ const styles = StyleSheet.create({
 const mapStateToProps = function(state) {
   return{ words: state.words, filtermode: state.filtermode};
 }
-export default connect(mapStateToProps)(Word);
+export default connect(mapStateToProps, actioncreator)(Word);

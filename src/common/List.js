@@ -5,8 +5,23 @@ import Form from './Form';
 import Filter from './Filter';
 import Word from './Word';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 class List extends Component {
+  componentDidMount(){
+    const url ='https://server2301.herokuapp.com/word/';
+    axios
+      .get(url)
+      .then(function(response) {
+        // handle success
+        console.log(response.data);
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
+  }
+
   onRemoveWord = id => {
     const newWords = this.state.words.filter(item => item.id !== id);
     this.setState({words: newWords});
